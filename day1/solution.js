@@ -3,14 +3,15 @@ const fs = require('fs');
 let data = fs.readFileSync('data.txt', 'utf8');
 
 // Part 1
-const split = data.split('\n\n');
-const mapSplit = split.map((x) => x.split('\n'));
-const numbers = mapSplit.map((x) => x.map(Number));
-const sum = numbers.map((x) =>
-  x.reduce((accumulator, value) => {
-    return accumulator + value;
-  }, 0)
-);
+const sum = data
+  .split('\n\n')
+  .map((x) => x.split('\n'))
+  .map((x) => x.map(Number))
+  .map((x) =>
+    x.reduce((accumulator, value) => {
+      return accumulator + value;
+    }, 0)
+  );
 const max = Math.max(...sum);
 
 console.log(max);
