@@ -17,7 +17,7 @@ const scoreGuide = {
   'C Z': 6,
 };
 
-let data = fs.readFileSync('data.txt', 'utf8');
+const data = fs.readFileSync('data.txt', 'utf8');
 
 // Part 1
 const split = data.split('\n');

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-let data = fs.readFileSync('data.txt', 'utf8');
+const data = fs.readFileSync('data.txt', 'utf8');
 
 // Part 1
 const sum = data
