@@ -41,15 +41,29 @@ class Storage {
     }
     return this.storage;
   }
+
+  // Part 2
+  newMoveCrate(amount, from, to) {
+    let temp = this.storage[from - 1].slice(
+      this.storage[from - 1].length - amount,
+      this.storage[from - 1].length
+    );
+    for (let i = 0; i < amount; i++) {
+      this.storage[from - 1].pop();
+    }
+    this.storage[to - 1].push(...temp);
+    return this.storage;
+  }
 }
 
 let [crates, instructions] = data.split('\n\n');
 crates = crates.split('\n');
 
 const s = new Storage(crates);
+
 instructions = instructions.split('\n');
-for (let i = 0; i < instructions.length; i++) {
-  let split = instructions[i].split(' ');
+for (const i of instructions) {
+  let split = i.split(' ');
   s.moveCrate(split[1], split[3], split[5]);
 }
 
@@ -59,3 +73,18 @@ for (const i of s.storage) {
 }
 
 console.log(answer);
+
+// Part 2
+const s2 = new Storage(crates);
+
+for (const i of instructions) {
+  let split = i.split(' ');
+  s2.newMoveCrate(split[1], split[3], split[5]);
+}
+
+let answer2 = '';
+for (const i of s2.storage) {
+  answer2 += i[i.length - 1];
+}
+
+console.log(answer2);
