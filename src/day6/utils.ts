@@ -1,14 +1,4 @@
-const fs = require('fs');
-
-const data = fs.readFileSync('data.txt', 'utf8');
-
-// Part 1
-console.log(findMarker(data, 4));
-
-// Part 2
-console.log(findMarker(data, 14));
-
-function findMarker(data, marker) {
+function findMarker(data: string, marker: number): number | undefined {
   for (let i = 0; i < data.length; i++) {
     let isMarker = true;
     for (let j = marker - 1; j > 0; j--) {
@@ -23,3 +13,5 @@ function findMarker(data, marker) {
     }
   }
 }
+
+export default findMarker;
