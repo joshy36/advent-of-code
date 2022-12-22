@@ -2,6 +2,7 @@ export default class Storage {
   crates: string[];
   nCols: string;
   storage: string[][];
+
   constructor(crates: string[]) {
     this.crates = crates;
     this.nCols = this.crates[crates.length - 1].charAt(
