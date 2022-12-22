@@ -1,10 +1,8 @@
-const fs = require('fs');
-
-const data = fs.readFileSync('data.txt', 'utf8');
-
-// Part 1
-class Storage {
-  constructor(crates) {
+export default class Storage {
+  crates: string[];
+  nCols: string;
+  storage: string[][];
+  constructor(crates: string[]) {
     this.crates = crates;
     this.nCols = this.crates[crates.length - 1].charAt(
       this.crates[crates.length - 1].length - 2
@@ -30,20 +28,19 @@ class Storage {
     }
   }
 
-  isLetter(c) {
+  isLetter(c: string): boolean {
     return /[a-zA-Z]/.test(c);
   }
 
-  moveCrate(amount, from, to) {
+  moveCrate(amount: number, from: number, to: number) {
     for (let i = 0; i < amount; i++) {
       let temp = this.storage[from - 1].pop();
-      this.storage[to - 1].push(temp);
+      this.storage[to - 1].push(String(temp));
     }
-    return this.storage;
   }
 
   // Part 2
-  newMoveCrate(amount, from, to) {
+  newMoveCrate(amount: number, from: number, to: number) {
     let temp = this.storage[from - 1].slice(
       this.storage[from - 1].length - amount,
       this.storage[from - 1].length
@@ -52,39 +49,5 @@ class Storage {
       this.storage[from - 1].pop();
     }
     this.storage[to - 1].push(...temp);
-    return this.storage;
   }
 }
-
-let [crates, instructions] = data.split('\n\n');
-crates = crates.split('\n');
-
-const s = new Storage(crates);
-
-instructions = instructions.split('\n');
-for (const i of instructions) {
-  let split = i.split(' ');
-  s.moveCrate(split[1], split[3], split[5]);
-}
-
-let answer = '';
-for (const i of s.storage) {
-  answer += i[i.length - 1];
-}
-
-console.log(answer);
-
-// Part 2
-const s2 = new Storage(crates);
-
-for (const i of instructions) {
-  let split = i.split(' ');
-  s2.newMoveCrate(split[1], split[3], split[5]);
-}
-
-let answer2 = '';
-for (const i of s2.storage) {
-  answer2 += i[i.length - 1];
-}
-
-console.log(answer2);
