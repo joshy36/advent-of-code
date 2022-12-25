@@ -1,6 +1,5 @@
 import { Tree } from './types';
 
-// Part 1
 export const checkLeft = (split: string[], row: number, col: number): Tree => {
   let tree = { isVisible: false, view: 0 };
   for (let i = 1; i <= col; i++) {
