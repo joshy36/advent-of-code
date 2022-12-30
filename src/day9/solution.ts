@@ -31,12 +31,12 @@ for (let i = 0; i < split.length; i++) {
       map[row][col] = 1;
     }
   }
-  // if (dir === 'D') {
-  //   for (let j = 0; j < Number(amount); j++) {
-  //     row++;
-  //     map[row][col] = 1;
-  //   }
-  // }
+  if (dir === 'D') {
+    for (let j = 0; j < Number(amount); j++) {
+      row++;
+      map[row][col] = 1;
+    }
+  }
 }
 
 console.log(map);
