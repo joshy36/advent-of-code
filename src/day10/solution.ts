@@ -8,6 +8,7 @@ type timeStep = {
   x: number;
 };
 
+// Part 1
 let storage: timeStep[] = new Array();
 let c = 0;
 let sum = 1;
@@ -24,12 +25,22 @@ for (let i = 0; i < split.length; i++) {
   }
 }
 
-let p1 =
-  storage[19].x * 20 +
-  storage[59].x * 60 +
-  storage[99].x * 100 +
-  storage[139].x * 140 +
-  storage[179].x * 180 +
-  storage[219].x * 220;
+let p1 = 0;
+for (let i = 20; i <= 220; i += 40) {
+  p1 += storage[i - 1].x * i;
+}
 
 console.log(p1);
+
+// Part 2
+let crt: string[] = Array.from(Array(6), () => '');
+
+for (let i = 0; i < 6; i++) {
+  let n = i * 40;
+  for (let j = n; j < n + 40; j++) {
+    if (storage[j].x <= j - n + 1 && storage[j].x >= j - n - 1) crt[i] += '#';
+    else crt[i] += '.';
+  }
+}
+
+console.log(crt);
