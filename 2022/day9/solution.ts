@@ -8,7 +8,7 @@ let rope = new Rope();
 
 for (let i = 0; i < split.length; i++) {
   rope.moveHead(split[i]);
-  rope.moveTail(split[i]);
+  // rope.moveTail(split[i]);
 }
 
 console.log(rope.map);
